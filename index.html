@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devi & Siva's Wedding</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Lato:wght@300;400;700&family=Ramabhadra&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* ROYAL GOLD & LOVE THEME (No Blue) */
+            --primary-gold: #D4AF37;      /* Classic Gold */
+            --secondary-gold: #B8860B;    /* Dark Antique Gold */
+            --text-dark: #3E2723;         /* Deep Warm Brown (Replaces Navy/Blue) */
+            --bg-cream: #FFF0F5;          /* Lavender Blush (Love Theme Base) */
+            --accent-red: #C2185B;        /* Royal Ruby */
+            --royal-maroon: #880E4F;      /* Deep Maroon for headers */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- FONT STYLES FOR ENGLISH VIEW --- */
+        #english-view {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem; 
+            color: var(--text-dark);
+        }
+
+        /* 1. Handwriting Font (Dancing Script) for Body Text */
+        #english-view .story-text,
+        #english-view .card p,
+        #english-view .time-label,
+        #english-view footer p,
+        #english-view .section-title,
+        #english-view .card h3 {
+            font-family: 'Dancing Script', cursive !important;
+        }
+
+        /* Colourful updates for specific text elements */
+        #english-view .section-title {
+            color: var(--royal-maroon);
+            font-weight: 700 !important;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.05);
+        }
+
+        #english-view .card h3 {
+            color: var(--accent-red);
+            font-weight: 700 !important;
+        }
+
+        #english-view .story-text {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* 2. Formal Font (Cinzel) for Buttons and Intro Text */
+        #english-view .invitation-text {
+            font-family: 'Cinzel', serif !important;
+            font-weight: 700;
+            color: var(--secondary-gold);
+        }
+
+        #english-view .date-display {
+            font-family: 'Cinzel', serif !important;
+            font-weight: 700;
+            color: var(--royal-maroon);
+            border-color: var(--primary-gold);
+        }
+
+        #english-view .time-val {
+            font-family: 'Cinzel', serif !important;
+            font-weight: 700;
+            color: var(--accent-red);
+        }
+
+        #english-view .btn,
+        #english-view .btn-secondary {
+            font-family: 'Cinzel', serif !important;
+            font-weight: 700;
+        }
+
+        /* 3. Fancy Font (Great Vibes) for Names with Royal Gradient */
+        #english-view .names {
+            font-family: 'Great Vibes', cursive;
+            /* Gold to Maroon Gradient */
+            background: linear-gradient(to right, #880E4F, #C2185B, #D4AF37, #C2185B, #880E4F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(1px 1px 2px rgba(212, 175, 55, 0.3));
+        }
+        /* ----------------------------------------------------- */
+
+        /* Language Toggle Button */
+        .lang-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold));
+            color: white;
+            border: 2px solid white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.05);
+            background: var(--royal-maroon);
+        }
+
+        /* Floating Hearts Background Animation */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: rgba(136, 14, 79, 0.15); /* Royal Maroon hearts */
+            animation: floatUp linear infinite;
+            bottom: -50px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* Decorative Background Pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#D4AF37 0.5px, transparent 0.5px), radial-gradient(#880E4F 0.5px, var(--bg-cream) 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(136, 14, 79, 0.1); /* Maroon Shadow */
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        /* Heartbeat animation for background */
+        @keyframes heartbeat {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.05; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.05; }
+        }
+
+        .mandala-bg {
+            position: absolute;
+            top: 37%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23880E4F"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translate(-50%, -50%);
+            opacity: 0.05;
+            z-index: 0;
+            animation: heartbeat 3s ease-in-out infinite;
+        }
+
+        .invitation-text {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            color: var(--secondary-gold);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            /* Fallback background */
+            background: -webkit-linear-gradient(45deg, #880E4F, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .names span {
+            display: block;
+            font-size: 3rem;
+            font-family: 'Great Vibes', cursive;
+            color: var(--royal-maroon);
+            margin: 0.2rem 0;
+            -webkit-text-fill-color: var(--royal-maroon);
+        }
+
+        /* Telugu specific styles */
+        .telugu-font {
+            font-family: 'Ramabhadra', sans-serif !important;
+        }
+        
+        .telugu-header {
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .date-section {
+            margin: 3rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .date-display {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            border-top: 2px solid var(--primary-gold);
+            border-bottom: 2px solid var(--primary-gold);
+            display: inline-block;
+            padding: 1rem 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-gold); /* Gold color for date */
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--royal-maroon);
+            font-family: 'Cinzel', serif;
+        }
+
+        .time-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--secondary-gold);
+        }
+
+        /* Details Section */
+        .details {
+            padding: 4rem 2rem;
+            background-color: rgba(136, 14, 79, 0.03); /* Subtle Maroon Tint */
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--royal-maroon);
+        }
+
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--royal-maroon);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .icon {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Buttons */
+        .cta-container {
+            text-align: center;
+            padding: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--royal-maroon);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--royal-maroon);
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: var(--royal-maroon);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-dark);
+            border-color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-dark);
+            color: white;
+        }
+
+        /* Top Banner Image Style */
+        .top-banner {
+            width: 100%;
+            height: 450px; 
+            object-fit: cover;
+            object-position: center 25%; 
+            display: block;
+            border-bottom: 3px solid var(--primary-gold);
+        }
+
+        /* New Styles for Story, Gallery and Map */
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--royal-maroon);
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '♥';
+            display: block;
+            width: 100%;
+            text-align: center;
+            color: var(--royal-maroon);
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+            background: none;
+            height: auto;
+            line-height: 1;
+        }
+
+        .story-text {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            padding: 0 1rem;
+            font-style: italic;
+            color: var(--text-dark);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 0 2rem 3rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            aspect-ratio: 3/4;
+            background-color: #eee;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .map-section {
+            padding: 0 2rem 3rem;
+        }
+
+        /* Update map styles for two columns */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .map-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .map-card h3 {
+            margin-bottom: 1rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px; /* Slightly shorter for split view */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 1rem;
+        }
+        
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .top-banner {
+                height: 200px;
+            }
+            .names {
+                font-size: 3.5rem;
+            }
+            .date-display {
+                padding: 0.8rem 1.5rem;
+                font-size: 1.2rem;
+            }
+            .countdown {
+                gap: 1rem;
+            }
+            .time-val {
+                font-size: 1.5rem;
+            }
+            .maps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="lang-btn" onclick="toggleLanguage()">Change to Telugu</button>
+
+    <div class="bg-pattern"></div>
+    
+    <!-- Floating Hearts Container -->
+    <div class="hearts-bg" id="hearts-container"></div>
+
+    <div class="container">
+        <!-- Top Banner Image -->
+        <img src="DSC00570.JPG.jpeg" alt="Devi & Siva" class="top-banner">
+
+        <!-- ============================================== -->
+        <!-- ENGLISH CONTENT -->
+        <!-- ============================================== -->
+        <div id="english-view">
+            <!-- Hero Section -->
+            <header class="hero">
+                <div class="mandala-bg"></div>
+                <div class="invitation-text"> we invite you to celebrate our wedding </div>
+                
+                <h1 class="names">
+                    Siva
+                    <!-- Heart instead of & -->
+                    <span>♥</span>
+                    Devi
+                </h1>
+
+                <div class="date-section">
+                    <div class="date-display">
+                        Saturday, 21 FEB, 2026
+                    </div>
+                </div>
+
+                <!-- Countdown -->
+                <div id="countdown" class="countdown">
+                    <div class="time-box">
+                        <span class="time-val" id="days">00</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-val" id="hours">00</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-val" id="minutes">00</span>
+                        <span class="time-label">Mins</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-val" id="seconds">00</span>
+                        <span class="time-label">Secs</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Story Section -->
+            <h2 class="section-title">Our Forever Begins</h2>
+            <div class="story-text">
+                <p>
+                  We’re so excited to start this new chapter together and would love for you to be part of it! Join us as we celebrate our wedding with love, laughter, and blessings from family and friends. Your presence will make our day even more special as we begin our forever.
+                </p>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="pic1.jpeg" alt="Couple Photo 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="pic3.jpeg" alt="Couple Photo 3">
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <section class="details">
+                <div class="card">
+                    <div class="icon"></div>
+                    <h3>Muhurtham</h3>
+                    <p><strong>Time:</strong> 12:20 AM (early hrs of 22nd feb)</p>
+                    <p><strong>Venue:</strong> Vakadavari Palem </p>
+                    <p>(At Bride’s Residence)</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon"></div>
+                    <h3> lunch</h3>
+                    <p><strong>Time:</strong> 12:00 PM onwards</p>
+                    <p><strong>Venue:</strong> Kothapeta , Kotha Ramalayam Street</p>
+                    <p>(At Groom's Residence)</p>
+                </div>
+            </section>
+
+            <!-- Map Section (English Split) -->
+            <section class="map-section">
+                <h2 class="section-title">Locations</h2>
+                <div class="maps-grid">
+                    <!-- Bride's Location -->
+                    <div class="map-card">
+                        <h3>Groom's Residence</h3>
+                        <div class="map-container">
+                            <iframe 
+                                class="map-frame"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.46!2d78.4!3d17.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI0JzAwLjAiTiA3OMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <a href="https://maps.app.goo.gl/JQWR5P4yUYGhfZAW9" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.5rem 1.5rem;">
+                            Open Map
+                        </a>
+                    </div>
+
+                    <!-- Groom's Location -->
+                    <div class="map-card">
+                        <h3>Bride's Residence</h3>
+                        <div class="map-container">
+                            <!-- Using generic iframe src, link is correct below -->
+                            <iframe 
+                                class="map-frame"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.46!2d78.4!3d17.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI0JzAwLjAiTiA3OMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <a href="https://maps.app.goo.gl/ojCg4HP6ZBVskokt5" target="_blank" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.5rem 1.5rem;">
+                            Open Map
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <div class="cta-container">
+                <button class="btn" onclick="addToCalendar()">Save the Date</button>
+            </div>
+
+            <footer>
+                <p>With Love, Devi & Siva</p>
+                <p>#DeviWedsSiva2026</p>
+            </footer>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TELUGU CONTENT -->
+        <!-- ============================================== -->
+        <div id="telugu-view" style="display: none;" class="telugu-font">
+            <!-- Hero Section -->
+            <header class="hero">
+                <div class="mandala-bg"></div>
+                
+                <!-- Updated to simple non-traditional wording -->
+                <div class="invitation-text telugu-font">మా కుటుంబ సభ్యులతో కలిసి, మా వివాహ వేడుకకు మిమ్మల్ని ఆహ్వానిస్తున్నాము</div>
+                
+                <h1 class="names telugu-font">
+                    శివ
+                    <span>♥</span>
+                    దేవి
+                </h1>
+
+                <div class="date-section">
+                    <div class="date-display telugu-font">
+                        స్థిరవారం, 21 ఫిబ్రవరి 2026
+                    </div>
+                </div>
+
+                <!-- Countdown -->
+                <div class="countdown">
+                    <div class="time-box">
+                        <span class="time-val" id="days-te">00</span>
+                        <span class="time-label telugu-font">రోజులు</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-val" id="hours-te">00</span>
+                        <span class="time-label telugu-font">గంటలు</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-val" id="minutes-te">00</span>
+                        <span class="time-label telugu-font">నిమిషాలు</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-val" id="seconds-te">00</span>
+                        <span class="time-label telugu-font">సెకండ్లు</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Story Section REMOVED in Telugu View -->
+
+            <!-- Gallery Section -->
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="pic1.jpeg" alt="Couple Photo 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="pic3.jpeg" alt="Couple Photo 3">
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <section class="details">
+                <div class="card">
+                    <div class="icon"></div>
+                    <h3 class="telugu-font">సుముహూర్తం</h3>
+                    <p class="telugu-font"><strong>సమయం:</strong> 21-02-2026 స్థిరవారం రాత్రి గం॥ 12-21 ని॥లకు (తె॥ ఆదివారం)</p>
+                    <p class="telugu-font"><strong>వేదిక:</strong> వాకడవారి పాలెం</p>
+                    <p class="telugu-font">వధువు స్వగృహమునందు</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon"></div>
+                    <h3 class="telugu-font">విందు</h3>
+                    <p class="telugu-font"><strong>సమయం:</strong> మధ్యాహ్నం 12 గంటలు నుండి</p>
+                    <p class="telugu-font"><strong>వేదిక:</strong> కొత్తపేట, కొత్త రామాలయం వీధి</p>
+                    <p class="telugu-font">వరుడు స్వగృహమునందు</p>
+                </div>
+            </section>
+
+            <!-- Map Section (Telugu Split) -->
+            <section class="map-section">
+                <h2 class="section-title telugu-font"></h2>
+                <div class="maps-grid">
+                    <!-- Bride's Location -->
+                    <div class="map-card">
+                        <h3 class="telugu-font">వరుడు స్వగృహము</h3>
+                        <div class="map-container">
+                            <iframe 
+                                class="map-frame"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.46!2d78.4!3d17.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI0JzAwLjAiTiA3OMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <a href="https://maps.app.goo.gl/JQWR5P4yUYGhfZAW9" target="_blank" class="btn btn-secondary telugu-font" style="font-size: 0.8rem; padding: 0.5rem 1.5rem;">
+                            మ్యాప్ తెరవండి
+                        </a>
+                    </div>
+
+                    <!-- Groom's Location -->
+                    <div class="map-card">
+                        <h3 class="telugu-font">వధువు స్వగృహము</h3>
+                        <div class="map-container">
+                            <iframe 
+                                class="map-frame"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.46!2d78.4!3d17.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI0JzAwLjAiTiA3OMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <a href="https://maps.app.goo.gl/ojCg4HP6ZBVskokt5" target="_blank" class="btn btn-secondary telugu-font" style="font-size: 0.8rem; padding: 0.5rem 1.5rem;">
+                            మ్యాప్ తెరవండి
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <div class="cta-container">
+                <button class="btn telugu-font" onclick="addToCalendar()">క్యాలెండర్‌కు జోడించండి</button>
+            </div>
+
+            <footer>
+                <p class="telugu-font">ప్రేమతో, దేవి & శివ</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Language Toggle Logic
+        let isEnglish = true;
+
+        function toggleLanguage() {
+            const enView = document.getElementById('english-view');
+            const teView = document.getElementById('telugu-view');
+            const btn = document.querySelector('.lang-btn');
+
+            if (isEnglish) {
+                enView.style.display = 'none';
+                teView.style.display = 'block';
+                btn.innerText = 'Change to English';
+            } else {
+                enView.style.display = 'block';
+                teView.style.display = 'none';
+                btn.innerText = 'Change to Telugu';
+            }
+            isEnglish = !isEnglish;
+        }
+
+        // Countdown Timer Logic
+        const weddingDate = new Date("Feb 21, 2026 00:20:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update English Counter
+            if(document.getElementById("days")) {
+                document.getElementById("days").innerHTML = days < 10 ? '0' + days : days;
+                document.getElementById("hours").innerHTML = hours < 10 ? '0' + hours : hours;
+                document.getElementById("minutes").innerHTML = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("seconds").innerHTML = seconds < 10 ? '0' + seconds : seconds;
+            }
+
+            // Update Telugu Counter (Same numbers, different IDs)
+            if(document.getElementById("days-te")) {
+                document.getElementById("days-te").innerHTML = days < 10 ? '0' + days : days;
+                document.getElementById("hours-te").innerHTML = hours < 10 ? '0' + hours : hours;
+                document.getElementById("minutes-te").innerHTML = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("seconds-te").innerHTML = seconds < 10 ? '0' + seconds : seconds;
+            }
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "<div style='font-family:Cinzel; font-size:1.5rem; color:#E91E63;'>Happily Ever After!</div>";
+            }
+        }, 1000);
+
+        // Add to Calendar Function
+        function addToCalendar() {
+            const event = {
+                title: "Devi & Siva's Wedding",
+                start: "20260221T100000",
+                end: "20260221T230000",
+                address: "Grand Royal Convention Hall, 123 Celebration Avenue",
+                description: "Join us to celebrate the wedding of Devi and Siva!"
+            };
+
+            const icsContent = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+URL:${document.URL}
+DTSTART:${event.start}
+DTEND:${event.end}
+SUMMARY:${event.title}
+DESCRIPTION:${event.description}
+LOCATION:${event.address}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'Devi_Siva_Wedding.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Logic to spawn floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 20; 
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '♥';
+                heart.classList.add('heart-float');
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                
+                heart.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                heart.style.animationDelay = (Math.random() * 10) + 's';
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        createHearts();
+    </script>
+</body>
+</html>
